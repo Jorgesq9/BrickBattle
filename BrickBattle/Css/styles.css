@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#Starting-Screen {
+    text-align: center;
+    background-color: black;
+    background-size: cover;
+    height: 100vh;
+    
+}
+
+h1 {
+    margin: 0;
+    font-family: fantasy;
+    font-style: italic;
+    color: rgb(129, 5, 5);
+}
+
+#Starting-Screen p {
+    font-family: fantasy;
+    font-style: italic;
+    color: rgb(129, 5, 5);
+}
+
+#Starting-Screen button{
+    background-color: black;
+    color: rgb(247, 7, 7);
+    font-family: fantasy;
+    font-style: italic;
+    font-size: large;
+    width: 100px;
+    height: 50px;
+}
+
+#Gaming-Screen{
+    display: none;
+    overflow: hidden;
+   background-color: rgb(104, 3, 3);
+   background-size: cover;
+   height: 100vh;
+   
+}
+canvas {
+    background-color: black;
+    margin: 0 auto;
+    padding: 0;
+    display: block;
+    width: 900px;
+    height: 730px;
+
+}

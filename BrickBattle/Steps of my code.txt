@@ -1,0 +1,33 @@
+HTML 
+
+1--> Hice un html con el titulo de la pagina <title>BrickBattle</title.
+2--> Hice 3 div para separar el contenido de las 3 pantallas de juego , Incio , Juego y Final de juego.
+3--> Linkee el HTML con CSS y con los dos Archivos JS
+
+
+CSS 
+
+1--> Starting-Screen que es donde va ir nuestro inicio del juego con Titutlo , logo y el boto para empezar a jugar.
+
+2--> Gaming Screen que es donde vamos a jugar al juego y el canvas que va a ser nuestro mapa del juego .
+
+JS
+
+game.js --> Es nuetro archivo que mediante clases va a controlar la transicion de nuestras pantallas , de momento tengo solo puesto la transicion de la pantalla de inicio a la pantalla de gaming con el canvas .
+
+
+script.js --> aqui es donde va ir nuestra logica del juego y dibujado el canvas con el mapa del juego la pelota , los bricks y la pala para jugar.
+
+	1-> Function drawMap  con window.requestAnimationFrame(drawMap); y llamando cuando termine la funcion a drawMap estamos haciendo que haya un bucle de fotogramas para dar la sensacion de animar los fotogramas que sera llamada constantemente para añadir fotogramas con drawMap().
+
+	2 -> Vamos a empezar dibujando la pelota para ello he creado una variable con el radio y otras variables con la posicion de la pelota y la velocidad que va a llevar. 
+	
+		--> Funcion drawBall() -->  context.beginPath() para empezar a dibujar la pelota
+		 --> context.arc(x, y, radiusBall, 0, Math.PI * 2) para hacer la circuferencia de la pelota.
+	 	 --> context.fillStyle = '#00FFFF'context.fill() para añadir color y rellenar la pelota
+		 --> context.closePath() cierra el camino actual para que no haya errores en el futuro.
+
+	3 -> cleanMap() --> esta funcion lo que hace es ir borrando los fotogramas por donde pasa la pelota.
+
+
+	4 --> movementBall() --> esta funcion hace que la pelota se mueva en direccion x e y segun la velociadad que tenemos predefinidas con las variables speedX y speedY
