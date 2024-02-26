@@ -14,12 +14,12 @@ function startGame() {
 const canvas = document.getElementById("brickBattleCanvas")
 const context = canvas.getContext('2d')
 
-canvas.width = 500
-canvas.height = 400
+canvas.width = 900
+canvas.height = 700
 
 // Ball Variables
 
-const radiusBall = 3;
+const radiusBall = 5;
 
 // Ball position 
 
@@ -28,10 +28,20 @@ let y = canvas.height -30
 
 //Ball speed
 
-let speedX = -1
-let speedY = -1
+let speedX = -3
+let speedY = -3
 
 
+//paddle Variables
+
+const padHeight = 10
+const padWidth = 100
+
+let paddleX = (canvas.width - padWidth)  / 2
+let paddleY = canvas.height - padHeight - 30
+
+let rightPressed = false;
+let leftPressed = false;
 
 function drawBall(){
 
@@ -42,19 +52,31 @@ function drawBall(){
     context.fill()
     context.closePath()
 }
+function drawPaddle(){
+
+    context.fillStyle = '#B40404'
+    context.fillRect(paddleX, paddleY, padWidth, padHeight)
+}
+
 
 function cleanMap() {
     context.clearRect(0, 0, canvas.width, canvas.height)
 }
 
-function drawPaddle(){
 
-}
 
 function drawBricks(){
 
 }
 
+function movementPadd() {
+    if (rightPressed) {
+        paddleX += 10
+    }
+    else if (leftPressed) {
+        paddleX -= 10
+    }
+}
 
 function movementBall() {
 // collision with the width and height
@@ -68,21 +90,49 @@ function movementBall() {
             speedY = -speedY
     }
 
-
-
-
     x += speedX
     y += speedY
 
 }
 
+function initEvents() {
+    document.addEventListener('keydown', keyDownHandler)
+    document.addEventListener('keyup', keyUpHandler)
+
+    function keyDownHandler(event) {
+        const {key} = event
+        
+        if (key === 'Left' || key === 'ArrowLeft') {
+            leftPressed = true
+        }
+        else if (key === 'Right' || key === 'ArrowRight') {
+            rightPressed = true
+        }
+    }
+    function keyUpHandler(event) {
+
+        const {key} = event
+        if (key === 'Left' || key === 'ArrowLeft') {
+            leftPressed = false
+        }
+        else if (key === 'Right' || key === 'ArrowRight') {
+            rightPressed = false
+        }
+    }
+}
 
 
 function drawMap() {
-   
-    cleanMap();
+   console.log(rightPressed, leftPressed)
+    cleanMap()
+
+    
     drawBall()
+    drawPaddle()
     movementBall()
+    movementPadd()
+    
     window.requestAnimationFrame(drawMap);
 }
 drawMap();
+initEvents();
