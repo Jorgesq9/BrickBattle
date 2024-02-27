@@ -65,3 +65,17 @@ canvas {
     background-color: aqua;
     border: none;
 }
+
+#Win-Screen{
+    display: none;
+    text-align: center;
+    background-color: white;
+    width: cover;
+    height: auto;
+}
+
+#Win-Screen button{
+    padding: 10px;
+    background-color: aqua;
+    border: none;
+}

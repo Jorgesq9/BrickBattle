@@ -69,4 +69,8 @@ script.js
 
 	3--> Cuando perdia y se me iba a la pantalla de retry tuve bastantes problemas para poder volver a la del juego sin que este estuviera empezado ya asi que hice la funcion retryGame() que activa el boton retry para pasar a la pantalla de juego pero tambien llamo a la funcion resetGame() para resetear el juego a la forma inicial .
 
-	
+	4 --> La hora de hacer los Bricks , estuvo bastante dificil pero ya los he dibujado solo queda hacer la colision , para dibujarlos primero hice las variables para las columnas y filas , y como queria que fuera el ancho y alto de cada uno . Para dibujarlos hice dos for para que se creen las columnas y las filas con los bricks del tamaño que quise hacerlos.
+
+	5--> Despues de hacerme a la idea de como hacer los bucles me puse a hacerlos en la funciont drawBricks() para ya visualizarlos en la pantalla de mi juego y separar asi los datos de la representacion visual.
+
+	6 --> Ahora a por las colisiones --> Para hacer las colisiones fue relativamente mas sencillo porque ya he hecho las colisiones de la pelota y del paddle . Hacemos los dos bucles for para iterar por cada ladrillo y con condicional miramos el status de cada ladrillo , si la pelota y el ladrillo estan en las mismas coordenadas es que hay colision y pasamos el status del brick de unbroken a broken y desaparecera.

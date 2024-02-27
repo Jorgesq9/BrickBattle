@@ -31,8 +31,10 @@ let y = canvas.height -40
 
 //Ball speed
 
-let speedX = -2
-let speedY = -2
+let speedX = -5
+let speedY = 5
+
+
 
 
 //paddle Variables
@@ -47,13 +49,53 @@ let rightPressed = false;
 let leftPressed = false;
 
 
+
+//Bricks Variables
+
+const rowOfBricks = 6
+const columnsOfBricks = 10
+const brickWidth = 70
+const brickHeigth = 30
+const brickMarginTop = 100
+const brickPadding = 2
+const brickMarginleft = 100
+const bricks = []
+
+
+
+const brickStatus = {unBroken: 1, broken: 0}
+
+
+//Making the MATRIX, this are the data to use it later to draw the bricks.
+for(let column = 0; column < columnsOfBricks; column++ ){
+
+    bricks[column] = []
+
+    for(let row = 0; row < rowOfBricks; row++){ 
+
+        // calculating where to put the bricks .
+        const brickX = column * (brickWidth + brickPadding) + brickMarginleft 
+        const brickY = row * (brickHeigth + brickPadding) + brickMarginTop
+
+        //Giving random colors to the bricks.
+
+        const random = Math.floor(Math.random() * 9 )
+
+        bricks[column][row] = {x: brickX, y: brickY, status: brickStatus.unBroken, color: random}
+    }
+}
+
+
+
+
+
 // drawing a ball
 function drawBall(){
 
     
     context.beginPath()
     context.arc(x, y, radiusBall, 0, Math.PI * 2)
-    context.fillStyle = '#00FFFF'
+    context.fillStyle = 'aqua'
     context.fill()
     context.closePath()
 }
@@ -74,6 +116,50 @@ function cleanMap() {
 
 function drawBricks(){
 
+    for(let column = 0; column < columnsOfBricks; column++ ){
+
+        for(let row = 0; row < rowOfBricks; row++){
+
+            const currentBrick = bricks[column][row]
+
+            if(currentBrick.status === brickStatus.destroyed)
+            continue
+   
+         context.fillStyle = 'red'
+         context.fillRect(currentBrick.x, currentBrick.y, brickWidth, brickHeigth)
+         
+        }
+    }
+}
+
+function collisionBricks(){
+    let allBricksDestroyed = true
+    for(let column = 0; column < columnsOfBricks; column++ ){
+
+        for(let row = 0; row < rowOfBricks; row++){
+
+            const currentBrick = bricks[column][row]
+
+            if(currentBrick.status === brickStatus.destroyed)
+            continue
+
+            if (x > currentBrick.x && x < currentBrick.x + brickWidth && y > currentBrick.y && y < currentBrick.y + brickHeigth){
+                speedY = -speedY
+                currentBrick.status = brickStatus.destroyed
+            }
+        
+            if ( currentBrick.status !== brickStatus.destroyed) {
+                allBricksDestroyed = false
+                
+            }
+            
+        }
+    }
+
+    if (allBricksDestroyed) {
+        gameWins()
+        resetGame()
+    }
 }
 
 function movementPadd() {
@@ -90,6 +176,16 @@ function gameOver() {
     gameScreens.end()
 
     }
+
+function gameWins() {
+    gameScreens.win()
+    const playAgain = document.getElementById("Play-Again")
+    playAgain.addEventListener("click", function(){
+        gameScreens.playAgain()
+        document.location.reload()
+        resetGame()
+})
+}
 
 function movementBall() {
 // collision with the width and height
@@ -158,6 +254,8 @@ function drawMap() {
     drawPaddle()
     movementBall()
     movementPadd()
+    drawBricks()
+    collisionBricks()
     
     window.requestAnimationFrame(drawMap);
 }
@@ -174,7 +272,8 @@ function retyrGame() {
     const retryButton = document.getElementById("retry")
        retryButton.addEventListener("click", function(){
         gameScreens.retry()
-       resetGame()
+        document.location.reload()
+        resetGame()
    })
    }
 
@@ -190,6 +289,7 @@ function retyrGame() {
    // Reset the speed ball and direction
     speedX = -2;
     speedY = -2;
+
 
     cleanMap();
 }
