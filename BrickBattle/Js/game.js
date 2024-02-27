@@ -1,18 +1,27 @@
 class GameScreens{
     constructor(){
-
+    
     this.startingScreen = document.getElementById("Starting-Screen");
     this.gamingScreen = document.getElementById("Gaming-Screen");
     this.endScreen = document.getElementById("End-Screen")
-    this.gameIsOver = false;
+    
     
 }
 
     start() {
-        this.gamingScreen.style.width = `${this.width}px`
-        this.gamingScreen.style.width = `${this.height}px`
+    
         this.startingScreen.style.display = 'none';
         this.gamingScreen.style.display = 'block'
     }
 
-}
+    end() {
+        this.gamingScreen.style.display = 'none'
+        this.endScreen.style.display = 'block'
+        
+    }
+    retry() {
+        this.endScreen.style.display ='none'
+        this.gamingScreen.style.display = 'block'
+    }
+    }
+

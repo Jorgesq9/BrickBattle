@@ -1,8 +1,15 @@
 HTML 
-
+//Day1
 1--> Hice un html con el titulo de la pagina <title>BrickBattle</title.
 2--> Hice 3 div para separar el contenido de las 3 pantallas de juego , Incio , Juego y Final de juego.
 3--> Linkee el HTML con CSS y con los dos Archivos JS
+
+//Day2 
+
+1--> Cambie el div de End-Game porque no estaba cogiendo lo que se deberia de mostar en la pantalla solo el titulo.
+
+
+
 
 
 CSS 
@@ -11,11 +18,28 @@ CSS
 
 2--> Gaming Screen que es donde vamos a jugar al juego y el canvas que va a ser nuestro mapa del juego .
 
+3 --> End-Screen que es la pantalla de Game Over y retry si quieres volver a jugar.
+
+
+
+
 JS
 
+//Day1
 game.js --> Es nuetro archivo que mediante clases va a controlar la transicion de nuestras pantallas , de momento tengo solo puesto la transicion de la pantalla de inicio a la pantalla de gaming con el canvas .
 
+//Day2
+game. js  --> Hoy he hecho que en la clase GameScreens tenga las tres pantallas , la inicial que mediante un boto transiciona a la pantalla de juego y mendiante la logica de perder transicione a la pantalla de Game Over , tambien con un boton que al pulsarlo vuelvo a la pantalla de juego.
 
+
+
+
+
+
+
+
+
+//Day1
 script.js --> aqui es donde va ir nuestra logica del juego y dibujado el canvas con el mapa del juego la pelota , los bricks y la pala para jugar.
 
 	1-> Function drawMap  con window.requestAnimationFrame(drawMap); y llamando cuando termine la funcion a drawMap estamos haciendo que haya un bucle de fotogramas para dar la sensacion de animar los fotogramas que sera llamada constantemente para añadir fotogramas con drawMap().
@@ -30,4 +54,19 @@ script.js --> aqui es donde va ir nuestra logica del juego y dibujado el canvas 
 	3 -> cleanMap() --> esta funcion lo que hace es ir borrando los fotogramas por donde pasa la pelota.
 
 
-	4 --> movementBall() --> esta funcion hace que la pelota se mueva en direccion x e y segun la velociadad que tenemos predefinidas con las variables speedX y speedY
+	4 --> movementBall() --> esta funcion hace que la pelota se mueva en direccion x e y segun la velociadad que tenemos predefinidas con las variables speedX y speedY. Tambien he añadido  condicionales para que la pelota rebote cuando llegue a los limites de los lados y arriba y que se pierda el juego si choca con el fondo. Al chocar con el fondo.
+	
+	5--> drawPaddle() --> aqui mediante fillRect() y las constantes que cree para la posicion y la compustura del paddle hemos dibujado el paddle y le he asociado direcciones con las flechas de direccion con initEvents() en la que tuve que reflejar cuando se presionaba pero tambien cuando se soltaba porque si no , no paraba nunca de ir hacia el lado presionado.
+	
+	6--> movementPadd() --> Aqui delimito el paddle para que no se salga de la zona de juego con las colisiones y tambien la velocidad (sensibilidad) en la que se va a mover hacia los lados
+
+//Day2 
+script.js
+
+	1 --> Lo primero que hice hoy es darle la colision con la pelota y el paddle para ello tuve que hacer un condicional dentro de la funcion movementBall() en el cual si la pelota se encuentra en las mismas coordenadas que el paddle(inclyendo los px de ancho de este) , la pelota rebote y si no pues el juego pase a la pantalla Game Over.
+
+	2-->  Tambien hoy he conseguido coordinar cuando cambio de la primera pantalla a la del juego , que el juego no empiece a correr antes de estar en esa pantalla con la funcion startGame , para ello la cambie al final del codigo y le añadi llamar a la funcion drawMap() dentro de startGame() para que empiece solo cuando esta se activa.
+
+	3--> Cuando perdia y se me iba a la pantalla de retry tuve bastantes problemas para poder volver a la del juego sin que este estuviera empezado ya asi que hice la funcion retryGame() que activa el boton retry para pasar a la pantalla de juego pero tambien llamo a la funcion resetGame() para resetear el juego a la forma inicial .
+
+	

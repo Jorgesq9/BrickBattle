@@ -9,7 +9,10 @@ startButton.addEventListener("click", function(){
 function startGame() {
     gameScreens.start()
 }
-}
+
+
+
+
 
 const canvas = document.getElementById("brickBattleCanvas")
 const context = canvas.getContext('2d')
@@ -24,12 +27,12 @@ const radiusBall = 5;
 // Ball position 
 
 let x = canvas.width / 2
-let y = canvas.height -30
+let y = canvas.height -40
 
 //Ball speed
 
-let speedX = -3
-let speedY = -3
+let speedX = -2
+let speedY = -2
 
 
 //paddle Variables
@@ -43,6 +46,8 @@ let paddleY = canvas.height - padHeight - 30
 let rightPressed = false;
 let leftPressed = false;
 
+
+// drawing a ball
 function drawBall(){
 
     
@@ -52,13 +57,15 @@ function drawBall(){
     context.fill()
     context.closePath()
 }
+
+// drawing a paddle
 function drawPaddle(){
 
     context.fillStyle = '#B40404'
     context.fillRect(paddleX, paddleY, padWidth, padHeight)
 }
 
-
+// cleaning the map to see thee ball and paddle movement
 function cleanMap() {
     context.clearRect(0, 0, canvas.width, canvas.height)
 }
@@ -70,13 +77,19 @@ function drawBricks(){
 }
 
 function movementPadd() {
-    if (rightPressed) {
-        paddleX += 10
+    if (rightPressed && paddleX < canvas.width - padWidth) {
+        paddleX += 9
     }
-    else if (leftPressed) {
-        paddleX -= 10
+    else if (leftPressed && paddleX > 0) {
+        paddleX -= 9
     }
 }
+
+function gameOver() {
+    
+    gameScreens.end()
+
+    }
 
 function movementBall() {
 // collision with the width and height
@@ -85,11 +98,22 @@ function movementBall() {
             speedX = -speedX
     }
 
-    else if (y + speedY > canvas.height - radiusBall || y + speedY < radiusBall){
+    else if ( y + speedY < radiusBall){ //collision with the heigh
 
             speedY = -speedY
     }
 
+    if(x > paddleX && x < paddleX + padWidth && y + speedY > paddleY){
+        
+        speedY = -speedY
+
+    }
+   else if (y + speedY > canvas.height - radiusBall ){
+        
+        gameOver();
+        retyrGame()
+       
+    }
     x += speedX
     y += speedY
 
@@ -122,6 +146,9 @@ function initEvents() {
 }
 
 
+   
+
+
 function drawMap() {
    console.log(rightPressed, leftPressed)
     cleanMap()
@@ -134,5 +161,36 @@ function drawMap() {
     
     window.requestAnimationFrame(drawMap);
 }
-drawMap();
+
 initEvents();
+
+
+function startGame() {
+    gameScreens.start()
+    drawMap();
+}
+
+function retyrGame() {
+    const retryButton = document.getElementById("retry")
+       retryButton.addEventListener("click", function(){
+        gameScreens.retry()
+       resetGame()
+   })
+   }
+
+   function resetGame() {
+    // Reset ball position
+    x = canvas.width / 2;
+    y = canvas.height - 40;
+
+    // Reset paddle position
+    paddleX = (canvas.width - padWidth) / 2;
+    paddleY = canvas.height - padHeight - 30;
+
+   // Reset the speed ball and direction
+    speedX = -2;
+    speedY = -2;
+
+    cleanMap();
+}
+}
