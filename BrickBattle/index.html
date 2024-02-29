@@ -10,21 +10,27 @@
 
     <!--Start Screen-->
     <div id="Starting-Screen">
-    <h1>BrickBattle</h1>
-    <p>Press start to play!</p>
-    <button id="start-button">Start Game</button>
+    
+    <button id="start-button">Press to Start Game</button>
+    <audio id="startsound" src="./sounds/button.mp3" preload="auto"></audio>
     </div>
+
+
     <div id="Gaming-Screen">
     <canvas id="brickBattleCanvas" ></canvas>
-
+    <audio id="brick-sound" src="./sounds/correct-choice-43861.mp3" preload="auto"></audio>
+    <audio id="ball-paddle" src="./sounds/jump_c_02-102843.mp3" preload="auto"></audio>
+    <audio id="gameOver" src="./sounds/game-over-arcade-6435.mp3" preload="auto"></audio>
+    <audio id="winner" src="./sounds/wins.mp3" preload="auto"></audio>
+    <div id="score"></div>
     </div>
+
 
     <div id="End-Screen">
         <h1>GAME OVER</h1>
         <button id="retry">Retry</button>
     </div>
     <div id="Win-Screen">
-        <h1>CONGRATS!!! YOU WON!!</h1>
         <button id="Play-Again">Play-Again</button>
     </div>
     <script src="./Js/script.js"></script>

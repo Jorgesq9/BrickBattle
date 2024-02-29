@@ -1,4 +1,6 @@
 HTML 
+
+
 //Day1
 1--> Hice un html con el titulo de la pagina <title>BrickBattle</title.
 2--> Hice 3 div para separar el contenido de las 3 pantallas de juego , Incio , Juego y Final de juego.
@@ -31,7 +33,14 @@ game.js --> Es nuetro archivo que mediante clases va a controlar la transicion d
 //Day2
 game. js  --> Hoy he hecho que en la clase GameScreens tenga las tres pantallas , la inicial que mediante un boto transiciona a la pantalla de juego y mendiante la logica de perder transicione a la pantalla de Game Over , tambien con un boton que al pulsarlo vuelvo a la pantalla de juego.
 
+//Day3
 
+game.js 1--> El siguiente paso va a ser crear la clase para que se pregunte al usuario su nombre y se  vea su nombre y la puntuacion del jugador .
+
+	2--> dentro de player he hecho dos metodos askingName() que con un prompt pregunta el nombre al usuario.
+	
+	3--> DisplayScore() en este metodo cogemos el id de score de html que añadi antes y usando textContent metemeos el player + this.name que sera el nombre que ingreso y socre + this.score.
+	
 
 
 
@@ -74,3 +83,7 @@ script.js
 	5--> Despues de hacerme a la idea de como hacer los bucles me puse a hacerlos en la funciont drawBricks() para ya visualizarlos en la pantalla de mi juego y separar asi los datos de la representacion visual.
 
 	6 --> Ahora a por las colisiones --> Para hacer las colisiones fue relativamente mas sencillo porque ya he hecho las colisiones de la pelota y del paddle . Hacemos los dos bucles for para iterar por cada ladrillo y con condicional miramos el status de cada ladrillo , si la pelota y el ladrillo estan en las mismas coordenadas es que hay colision y pasamos el status del brick de unbroken a broken y desaparecera.
+
+//Day3
+
+	7 --> agreamos en window.onload const player = new Player e ingresamos la funcion de nuestra clase en drawmap para que el score se vaya actualizando player.displayScore()

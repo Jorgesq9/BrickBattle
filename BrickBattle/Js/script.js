@@ -1,14 +1,12 @@
 window.onload = function() {
     const startButton = document.getElementById("start-button")
     const gameScreens = new GameScreens;
+    const player = new Player;
 
 startButton.addEventListener("click", function(){
     startGame();
 })
 
-function startGame() {
-    gameScreens.start()
-}
 
 
 
@@ -23,7 +21,7 @@ canvas.height = 700
 // Ball Variables
 
 const radiusBall = 5;
-
+const ballSound = document.getElementById("ball-paddle")
 // Ball position 
 
 let x = canvas.width / 2
@@ -31,8 +29,10 @@ let y = canvas.height -40
 
 //Ball speed
 
-let speedX = -5
-let speedY = 5
+let speedX = 1
+let speedY = 2
+
+
 
 
 
@@ -51,6 +51,7 @@ let leftPressed = false;
 
 
 //Bricks Variables
+const brickHit = document.getElementById("brick-sound")
 
 const rowOfBricks = 6
 const columnsOfBricks = 10
@@ -88,7 +89,6 @@ for(let column = 0; column < columnsOfBricks; column++ ){
 
 
 
-
 // drawing a ball
 function drawBall(){
 
@@ -103,7 +103,7 @@ function drawBall(){
 // drawing a paddle
 function drawPaddle(){
 
-    context.fillStyle = '#B40404'
+    context.fillStyle = 'aqua'
     context.fillRect(paddleX, paddleY, padWidth, padHeight)
 }
 
@@ -125,7 +125,7 @@ function drawBricks(){
             if(currentBrick.status === brickStatus.destroyed)
             continue
    
-         context.fillStyle = 'red'
+         context.fillStyle = 'purple'
          context.fillRect(currentBrick.x, currentBrick.y, brickWidth, brickHeigth)
          
         }
@@ -146,6 +146,11 @@ function collisionBricks(){
             if (x > currentBrick.x && x < currentBrick.x + brickWidth && y > currentBrick.y && y < currentBrick.y + brickHeigth){
                 speedY = -speedY
                 currentBrick.status = brickStatus.destroyed
+                player.score += 100
+                brickHit.currentTime = 0
+                brickHit.volume = 0.1
+                brickHit.play()
+                console.log(player.score)
             }
         
             if ( currentBrick.status !== brickStatus.destroyed) {
@@ -158,24 +163,33 @@ function collisionBricks(){
 
     if (allBricksDestroyed) {
         gameWins()
+        winSound.play()
+        window.cancelAnimationFrame()
         resetGame()
+
     }
 }
 
 function movementPadd() {
     if (rightPressed && paddleX < canvas.width - padWidth) {
-        paddleX += 9
+        paddleX += 6
     }
     else if (leftPressed && paddleX > 0) {
-        paddleX -= 9
+        paddleX -= 6
     }
 }
 
 function gameOver() {
     
+    gameOverSound.play()
     gameScreens.end()
+    
 
     }
+
+//Victory sound
+
+const winSound = document.getElementById("winner")
 
 function gameWins() {
     gameScreens.win()
@@ -187,27 +201,42 @@ function gameWins() {
 })
 }
 
+
+//gameOver sound
+const gameOverSound = document.getElementById("gameOver")
+
+
 function movementBall() {
 // collision with the width and height
 
     if (x + speedX > canvas.width - radiusBall || x + speedX < radiusBall ){ //collision with the width .
             speedX = -speedX
+            ballSound.currentTime = 0
+            ballSound.volume = 0.1
+            ballSound.play()
     }
 
     else if ( y + speedY < radiusBall){ //collision with the heigh
 
             speedY = -speedY
+            ballSound.currentTime = 0
+            ballSound.volume = 0.1
+            ballSound.play()
     }
 
     if(x > paddleX && x < paddleX + padWidth && y + speedY > paddleY){
         
         speedY = -speedY
+        ballSound.currentTime = 0
+        brickHit.volume = 0.1
+        ballSound.play()
 
     }
    else if (y + speedY > canvas.height - radiusBall ){
-        
+        gameOverSound.currentTime = 0
         gameOver();
         retyrGame()
+        window.cancelAnimationFrame()
        
     }
     x += speedX
@@ -256,17 +285,27 @@ function drawMap() {
     movementPadd()
     drawBricks()
     collisionBricks()
+    player.displayScore()
     
     window.requestAnimationFrame(drawMap);
 }
 
 initEvents();
 
+//buttonStart sounb
+const startButtonSound = document.getElementById("startsound")
 
 function startGame() {
     gameScreens.start()
+    startButtonSound.volume = 0.1
+    startButtonSound.play()
+    player.askingName()
     drawMap();
 }
+
+
+
+
 
 function retyrGame() {
     const retryButton = document.getElementById("retry")
@@ -274,6 +313,10 @@ function retyrGame() {
         gameScreens.retry()
         document.location.reload()
         resetGame()
+        
+        
+        
+
    })
    }
 

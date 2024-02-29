@@ -37,9 +37,24 @@ class GameScreens{
     } 
 
 class Player {
-    constructor(name, points){
-        this.name = name;
-        this.points = points;
+    constructor(){
+        this.name = ""
+        this.score = 0
+    }
 
+    askingName() {
+        this.name = prompt("Write your name:")
+    }
+
+    displayScore(){
+        const score = document.getElementById("score")
+
+        score.style.color = 'white'
+        score.style.fontFamily = 'Arial'
+        score.style.fontSize = '30px'
+        score.style.textAlign = 'center'
+        
+        score.textContent = `Player: ${this.name} ㅤ Score: ${this.score} `
+    
     }
 }
