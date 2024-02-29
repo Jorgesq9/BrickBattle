@@ -165,7 +165,7 @@ function collisionBricks(){
         gameWins()
         winSound.play()
         window.cancelAnimationFrame()
-        resetGame()
+        
 
     }
 }
@@ -180,7 +180,6 @@ function movementPadd() {
 }
 
 function gameOver() {
-    
     gameOverSound.play()
     gameScreens.end()
     
@@ -197,7 +196,7 @@ function gameWins() {
     playAgain.addEventListener("click", function(){
         gameScreens.playAgain()
         document.location.reload()
-        resetGame()
+        
 })
 }
 
@@ -233,8 +232,8 @@ function movementBall() {
 
     }
    else if (y + speedY > canvas.height - radiusBall ){
-        gameOverSound.currentTime = 0
         gameOver();
+        principalScreen()
         retyrGame()
         window.cancelAnimationFrame()
        
@@ -275,7 +274,6 @@ function initEvents() {
 
 
 function drawMap() {
-   console.log(rightPressed, leftPressed)
     cleanMap()
 
     
@@ -287,7 +285,7 @@ function drawMap() {
     collisionBricks()
     player.displayScore()
     
-    window.requestAnimationFrame(drawMap);
+   window.requestAnimationFrame(drawMap);
 }
 
 initEvents();
@@ -307,18 +305,22 @@ function startGame() {
 
 
 
-function retyrGame() {
+function principalScreen() {
+    const backToPrincipal = document.getElementById("StartScreen")
+       backToPrincipal.addEventListener("click", function(){
+        gameScreens.principalScreen()
+        document.location.reload()
+        
+   })
+   }
+   function retyrGame() {
     const retryButton = document.getElementById("retry")
        retryButton.addEventListener("click", function(){
         gameScreens.retry()
-        document.location.reload()
         resetGame()
         
-        
-        
-
-   })
-   }
+       })
+    }
 
    function resetGame() {
     // Reset ball position
@@ -330,10 +332,19 @@ function retyrGame() {
     paddleY = canvas.height - padHeight - 30;
 
    // Reset the speed ball and direction
-    speedX = -2;
-    speedY = -2;
+    speedX = 1;
+    speedY = 2;
 
+    // Reset all the bricks
 
+    for(let column = 0; column < columnsOfBricks; column++) {
+        for(let row = 0; row < rowOfBricks; row++){
+            bricks[column][row].status = brickStatus.unBroken
+        }
+    }
+
+    player.score = 0
     cleanMap();
+    drawMap();
 }
 }

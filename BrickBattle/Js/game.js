@@ -5,6 +5,7 @@ class GameScreens{
     this.gamingScreen = document.getElementById("Gaming-Screen");
     this.endScreen = document.getElementById("End-Screen")
     this.winScreen = document.getElementById("Win-Screen")
+    this.level2 = document.getElementById("level2")
     
 }
 
@@ -21,6 +22,10 @@ class GameScreens{
     }
     retry() {
         this.endScreen.style.display ='none'
+        this.gamingScreen.style.display = 'block'
+    }
+    principalScreen(){
+        this.endScreen.style.display ='none'
         this.startingScreen.style.display = 'block'
     }
 
@@ -29,6 +34,10 @@ class GameScreens{
         this.winScreen.style.display = 'block'
 
         }
+    level2(){
+        this.winScreen.style.display = 'none'
+        this.level2.style.display = 'block'
+    }
 
     playAgain(){
         this.winScreen.style.display = 'none'
@@ -49,7 +58,7 @@ class Player {
     displayScore(){
         const score = document.getElementById("score")
 
-        score.style.color = 'white'
+        score.style.color = 'aqua'
         score.style.fontFamily = 'Arial'
         score.style.fontSize = '30px'
         score.style.textAlign = 'center'

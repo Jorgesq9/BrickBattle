@@ -69,7 +69,7 @@ canvas {
     
 }
 
-#End-Screen button{
+#retry {
     margin-top: 500px;
     margin-left: 0px;
     background-color:transparent;
@@ -81,6 +81,20 @@ canvas {
     width: 200px;
     height: 150px;
     animation: pulse 2s infinite;
+}
+#StartScreen {
+    margin-top: 500px;
+    margin-left: 0px;
+    background-color:transparent;
+    color: rgb(225, 229, 231); 
+    font-family:monospace;
+    font-style: italic;
+    font-size: 50px;
+    border: none;
+    width: 400px;
+    height: 150px;
+    animation: pulse 2s infinite;
+
 }
 
 #Win-Screen{
@@ -108,4 +122,16 @@ canvas {
     animation: pulse 2s infinite;
 }
 
-
+#Next-level {
+    margin-top: 500px;
+    margin-left: 0px;
+    background-color:transparent;
+    color: rgb(225, 229, 231); 
+    font-family:monospace;
+    font-style: italic;
+    font-size: 50px;
+    border: none;
+    width: 400px;
+    height: 150px;
+    animation: pulse 2s infinite;
+}
