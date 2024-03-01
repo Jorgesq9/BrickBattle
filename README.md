@@ -1,6 +1,7 @@
 <h1 align="center"> Brick-Battle by Jorge Esquiva </h1>
 
 <h2 align="center"> Here I will post the steps I did to to my code.</h2>
+<h4> Also in spanish in steps of my code file</h4>
 
 
 <h3 align="center"> HTML </h3>
