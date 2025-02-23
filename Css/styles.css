@@ -139,7 +139,7 @@ canvas {
   text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
 #Starting-Screen button {
-  margin-top: 220px; /* Ajusta este valor según necesites */
+  margin-top: 220px;
 }
 
 .neon-score {
