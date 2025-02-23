@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Monoton&family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+
     <title>BrickBattle</title>
-</head>
-<body>
-
-    <!--Start Screen-->
-    <div id="Starting-Screen">
-    
-    <button id="start-button">Press to Start Game</button>
-    <audio id="startsound" src="./sounds/button.mp3" preload="auto"></audio>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="Starting-Screen" class="screen active">
+      <h1 class="neon-title">Brick-Battle</h1>
+      <button id="start-button">Press to Start Game</button>
+      <audio id="startsound" src="sounds/button.mp3" preload="auto"></audio>
     </div>
 
-
-    <div id="Gaming-Screen">
-    <canvas id="brickBattleCanvas" ></canvas>
-    <audio id="brick-sound" src="./sounds/correct-choice-43861.mp3" preload="auto"></audio>
-    <audio id="ball-paddle" src="./sounds/jump_c_02-102843.mp3" preload="auto"></audio>
-    <audio id="gameOver" src="./sounds/game-over-arcade-6435.mp3" preload="auto"></audio>
-    <audio id="winner" src="./sounds/wins.mp3" preload="auto"></audio>
-    <div id="score"></div>
+    <!-- 🎮 Gaming Screen -->
+    <div id="Gaming-Screen" class="screen">
+      <canvas id="brickBattleCanvas"></canvas>
+      <audio
+        id="brick-sound"
+        src="sounds/correct-choice-43861.mp3"
+        preload="auto"
+      ></audio>
+      <audio
+        id="ball-paddle"
+        src="sounds/jump_c_02-102843.mp3"
+        preload="auto"
+      ></audio>
+      <audio
+        id="gameOver"
+        src="sounds/game-over-arcade-6435.mp3"
+        preload="auto"
+      ></audio>
+      <audio id="winner" src="sounds/wins.mp3" preload="auto"></audio>
+      <div id="score" class="neon-score"></div>
     </div>
 
-
-    <div id="End-Screen">
-        <h1>GAME OVER</h1>
+    <!-- ❌ Game Over Screen -->
+    <div id="End-Screen" class="screen">
+      <h2 class="neon-End">GAME OVER</h2>
+      <div class="game-over-buttons">
         <button id="retry">Retry</button>
-        <button id="StartScreen">Start-Screen</button>
+        <button id="StartScreen">Start Screen</button>
+      </div>
     </div>
-    <div id="Win-Screen">
-        <button id="Play-Again">Play-Again</button>
-        <button id="Next-level">Next-Level</button>
+
+    <!-- 🏆 Victory Screen -->
+    <div id="Win-Screen" class="screen">
+      <h2 class="neon-End">WINNER!!</h2>
+      <button id="Play-Again">Play Again</button>
     </div>
-    <div id="level2">
-        <canvas id="brickBattleCanvas2" ></canvas>
+
+    <!-- 🏆 Level 2 -->
+    <div id="level2" class="screen">
+      <canvas id="brickBattleCanvas2"></canvas>
     </div>
-    <script src="./Js/script.js"></script>
-    <script src="./Js/level2.js"></script>
-    <script src="./Js/game.js"></script>
-</body>
+
+    <!-- Scripts optimizados -->
+    <script src="js/game.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/level2.js" defer></script>
+  </body>
 </html>

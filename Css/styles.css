@@ -1,137 +1,203 @@
+/* 🌌 Fondo y efectos aplicados a toda la página */
+body,
+html {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 50, 1) 0%,
+    rgba(0, 0, 20, 1) 100%
+  );
+  color: white;
+}
+
+/* 🔄 Pantallas ocultas por defecto */
+#Gaming-Screen,
+#End-Screen,
+#Win-Screen,
+#level2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: none; /* Todas ocultas */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* 🔥 Mostrar solo la pantalla activa */
+.active {
+  display: flex;
+}
+/* 🎮 Estilos Generales */
 body {
-    margin: 0;
-    padding: 0;
-    background-color: rgb(0, 0, 4);    
+  margin: 0;
+  padding: 0;
+  font-family: "Press Start 2P", sans-serif;
+  text-align: center;
+  background: linear-gradient(45deg, #000428, #004e92);
+  background-size: 400%;
+  animation: neonGlow 10s infinite alternate;
+  color: white;
 }
 
-#Starting-Screen {
-    text-align: center;
-    background-image: url("../Images/background.png");
-    background-size: cover;
-    max-width: 1920px;
-    max-height: 1080px;
-    height: 100vh;
+/* ✨ Animación del fondo */
+@keyframes neonGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-
-@keyframes pulse {
-
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-    
+/* 📌 Efecto de "píxeles" o "grid" */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 5px 5px;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 10%,
+    transparent 10%
+  );
+  pointer-events: none;
 }
 
-
-#Starting-Screen button{
-    margin-top: 200px;
-    margin-bottom: 500px;
-    margin-left: 0px;
-    background-color:transparent;
-    color: rgb(225, 229, 231);
-    font-family:monospace;
-    font-style: italic;
-    font-size: 30px;
-    border: none;
-    width: 400px;
-    height: 150px;
-    animation: pulse 2s infinite;
-
+/* 🕹️ Estilo de pantallas */
+.screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#Gaming-Screen{
-    display: none;
-    overflow: hidden;
-   background-image: url(../Images/bac.png);
-   background-size: cover;
-   height: 100vh;
-   
+@keyframes blinkGlow {
+  0% {
+    box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+    opacity: 0.8;
+  }
+  100% {
+    box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+    opacity: 1;
+  }
 }
+
+button {
+  background: none;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-size: 18px;
+  font-family: "Press Start 2P", cursive;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  animation: blinkGlow 2s infinite;
+}
+
+button:hover {
+  background: #00ffff;
+  color: #000428;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+/* 🎮 Canvas centrado */
 canvas {
-    background-image: url(../Images/bac.png);
-    margin: 0 auto;
-    padding: 0;
-    margin-top: 100px;
-    display: block;
-   
-
+  display: block;
+  max-width: 80%;
+  height: auto;
+  margin: auto;
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+  margin-top: 100px;
 }
 
+/* Título en neon rosa para Start y Game Over */
+.neon-title {
+  color: #ff00ff;
+  font-family: "Press Start 2P", cursive;
+  font-size: 4rem;
+  margin-top: -200px;
 
-#End-Screen{
-    display: none;
-    text-align: center;
-    background-image: url("../Images/gameOver.png");
-    background-size: cover;
-    max-width: 1920px;
-    max-height: 1080px;
-    height: 100vh;
-    
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+#Starting-Screen button {
+  margin-top: 220px; /* Ajusta este valor según necesites */
 }
 
-#retry {
-    margin-top: 500px;
-    margin-left: 0px;
-    background-color:transparent;
-    color: rgb(225, 229, 231);
-    font-family:monospace;
-    font-style: italic;
-    font-size: 50px;
-    border: none;
-    width: 200px;
-    height: 150px;
-    animation: pulse 2s infinite;
-}
-#StartScreen {
-    margin-top: 500px;
-    margin-left: 0px;
-    background-color:transparent;
-    color: rgb(225, 229, 231); 
-    font-family:monospace;
-    font-style: italic;
-    font-size: 50px;
-    border: none;
-    width: 400px;
-    height: 150px;
-    animation: pulse 2s infinite;
-
+.neon-score {
+  color: #ff00ff;
+  font-size: 30px;
+  font-family: "VT323", monospace;
+  text-align: "center";
+  margin-top: 40px;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
 
-#Win-Screen{
-    display: none;
-    text-align: center;
-    background-image: url("../Images/win.png");
-    background-size: cover;
-    max-width: 1920px;
-    max-height: 1080px;
-    height: 100vh;
-    
+/* Opcional: Estilo para el subtítulo en Game Over */
+.neon-End {
+  color: #ff00ff;
+  font-size: 3rem;
+  font-family: "Press Start 2P", cursive;
+  margin-top: 300px;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
 
-#Win-Screen button{
-    margin-top: 500px;
-    margin-left: 0px;
-    background-color:transparent;
-    color: rgb(225, 229, 231);
-    font-family:monospace;
-    font-style: italic;
-    font-size: 50px;
-    border: none;
-    width: 500px;
-    height: 150px;
-    animation: pulse 2s infinite;
+/* Contenedor para botones en Game Over */
+.game-over-buttons {
+  display: flex;
+  font-family: "Press Start 2P", cursive;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
 }
 
-#Next-level {
-    margin-top: 500px;
-    margin-left: 0px;
-    background-color:transparent;
-    color: rgb(225, 229, 231); 
-    font-family:monospace;
-    font-style: italic;
-    font-size: 50px;
-    border: none;
-    width: 400px;
-    height: 150px;
-    animation: pulse 2s infinite;
+/* Mantener el resto de tu CSS sin cambios */
+
+/* 🟢 Responsive */
+@media screen and (max-width: 768px) {
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  .neon-title {
+    color: #ff00ff;
+    font-family: "Press Start 2P", cursive;
+    font-size: 2rem;
+    margin-top: -200px;
+
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .neon-title {
+    color: #ff00ff;
+    font-family: "Press Start 2P", cursive;
+    font-size: 2rem;
+    margin-top: -200px;
+
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  }
 }

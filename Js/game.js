@@ -1,69 +1,64 @@
-class GameScreens{
-    constructor(){
-    
-    this.startingScreen = document.getElementById("Starting-Screen");
-    this.gamingScreen = document.getElementById("Gaming-Screen");
-    this.endScreen = document.getElementById("End-Screen")
-    this.winScreen = document.getElementById("Win-Screen")
-    this.level2 = document.getElementById("level2")
-    
+class GameScreens {
+  constructor() {
+    this.screens = {
+      start: document.getElementById("Starting-Screen"),
+      game: document.getElementById("Gaming-Screen"),
+      end: document.getElementById("End-Screen"),
+      win: document.getElementById("Win-Screen"),
+      level2: document.getElementById("level2"),
+    };
+  }
+
+  showScreen(screenName) {
+    Object.values(this.screens).forEach(
+      (screen) => (screen.style.display = "none")
+    );
+    this.screens[screenName].style.display = "block";
+  }
+
+  start() {
+    this.showScreen("game");
+  }
+
+  end() {
+    this.showScreen("end");
+  }
+
+  retry() {
+    this.showScreen("game");
+  }
+
+  principalScreen() {
+    this.showScreen("start");
+  }
+
+  win() {
+    this.showScreen("win");
+  }
+
+  level2() {
+    this.showScreen("level2");
+  }
+
+  playAgain() {
+    this.showScreen("start");
+  }
 }
 
-    start() {
-    
-        this.startingScreen.style.display = 'none';
-        this.gamingScreen.style.display = 'block'
-    }
-
-    end() {
-        this.gamingScreen.style.display = 'none'
-        this.endScreen.style.display = 'block'
-        
-    }
-    retry() {
-        this.endScreen.style.display ='none'
-        this.gamingScreen.style.display = 'block'
-    }
-    principalScreen(){
-        this.endScreen.style.display ='none'
-        this.startingScreen.style.display = 'block'
-    }
-
-    win() {
-        this.gamingScreen.style.display = 'none'
-        this.winScreen.style.display = 'block'
-
-        }
-    level2(){
-        this.winScreen.style.display = 'none'
-        this.level2.style.display = 'block'
-    }
-
-    playAgain(){
-        this.winScreen.style.display = 'none'
-        this.startingScreen.style.display = 'block'
-    }
-    } 
-
 class Player {
-    constructor(){
-        this.name = ""
-        this.score = 0
-    }
+  constructor() {
+    this.name = "";
+    this.score = 0;
+  }
 
-    askingName() {
-        this.name = prompt("Write your name:")
-    }
+  askingName() {
+    this.name = prompt("Write your name:") || "Player";
+  }
 
-    displayScore(){
-        const score = document.getElementById("score")
+  displayScore() {
+    const scoreElement = document.getElementById("score");
+    Object.assign(scoreElement.style, {});
 
-        score.style.color = 'aqua'
-        score.style.fontFamily = 'Arial'
-        score.style.fontSize = '30px'
-        score.style.textAlign = 'center'
-        
-        score.textContent = `Player: ${this.name} ㅤ Score: ${this.score} `
-    
-    }
+    scoreElement.textContent = `Player: ${this.name} ㅤ Score: ${this.score}`;
+  }
 }
