@@ -103,7 +103,7 @@ Brick-Battle is a simple but exciting game where players control a paddle to bou
 ---
 
 ### 🕹️ Gameplay
-https://jorgesq9.github.io/BrickBattle/
+http://brickbattle.jorgeesquivafullstack.es/
 
 ---
 
