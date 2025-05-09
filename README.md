@@ -107,6 +107,11 @@ http://brickbattle.jorgeesquivafullstack.es/
 
 ---
 
+## 🌍 Despliegue Actual
+
+El juego está alojado en un servidor casero utilizando cloudflared (Cloudflare Tunnel), lo que permite exponerlo al público sin abrir puertos ni usar una IP pública.
+
+
 ## 🤝 Contributing
 If you'd like to contribute, feel free to fork the repo and submit a pull request!
 
